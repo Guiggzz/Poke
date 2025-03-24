@@ -1,2 +1,0 @@
-<p>Défense : {pokemon.stats.def} | Attaque : {pokemon.stats.atk}</p>
-<p>Taille : {pokemon.height}m | Poids : {pokemon.weight}kg</p>
