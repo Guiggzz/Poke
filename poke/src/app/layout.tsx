@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pokefion",
-  description: "Pokefion",
+  title: "Poke",
+  description: "Poke",
 };
 
 export default function RootLayout({

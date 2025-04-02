@@ -31,7 +31,6 @@ interface Type {
   image: string;
 }
 
-// Define sort options enum
 type SortOption =
   | "id_asc"
   | "id_desc"
@@ -139,7 +138,7 @@ export default function Home() {
             alt="Pokeball icon"
             className="w-10 h-10 mr-3"
           />
-          <h1 className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-yellow-500">Pokéfion</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-yellow-500">Poke</h1>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
@@ -151,7 +150,7 @@ export default function Home() {
           </button>
           <input
             type="text"
-            placeholder={lang ? "Rechercher un pokéfion" : "Search a pokefion"}
+            placeholder={lang ? "Rechercher un poke" : "Search a Poke"}
             className="p-2 text-gray-800 bg-white/90 rounded-lg border-2 border-indigo-300 focus:border-yellow-400 focus:outline-none w-full sm:w-auto shadow-md"
             onChange={handleSearch}
           />
@@ -211,7 +210,7 @@ export default function Home() {
               </div>
               <div className="ballShadow animate-pulse"></div>
               <p className="text-center mt-8 text-2xl font-bold text-yellow-300 animate-pulse">
-                {lang ? "Chargement des Pokéfions..." : "Loading Pokefions..."}
+                {lang ? "Chargement des pokes..." : "Loading Pokes..."}
               </p>
             </div>
           </section>
