@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { fetchPoke } from "./fetchPoke";
 import { fetchType } from "./fetchType";
 import PokemonModal from "./components/PokemonModal";
+import PokeCard from "./components/pokeCard";
+import OptionBar from "./components/optionBar";
 import "./globals.css"
 
 interface Pokemon {
@@ -141,58 +143,20 @@ export default function Home() {
           <h1 className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-yellow-500">Poke</h1>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-          <button
-            className="p-2 bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold rounded-lg transition-all duration-300 w-full sm:w-auto shadow-md"
-            onClick={() => setLang(prevLang => !prevLang)}
-          >
-            {lang ? "Français" : "English"}
-          </button>
-          <input
-            type="text"
-            placeholder={lang ? "Rechercher un poke" : "Search a Poke"}
-            className="p-2 text-gray-800 bg-white/90 rounded-lg border-2 border-indigo-300 focus:border-yellow-400 focus:outline-none w-full sm:w-auto shadow-md"
-            onChange={handleSearch}
+        {!loading && !error && (
+          <OptionBar
+            lang={lang}
+            setLang={setLang}
+            handleSearch={handleSearch}
+            gen={gen}
+            setGeneration={setGeneration}
+            types={types}
+            type={type}
+            setType={setType}
+            sortOption={sortOption}
+            handleSortChange={handleSortChange}
           />
-          <select
-            className="p-2 text-gray-800 bg-white/90 rounded-lg border-2 border-indigo-300 focus:border-yellow-400 focus:outline-none w-full sm:w-auto shadow-md"
-            value={gen === null ? 'all' : gen}
-            onChange={(e) => setGeneration(e.target.value === 'all' ? null : Number(e.target.value))}
-          >
-            <option value="all">{lang ? "Toutes Générations" : "All Generations"}</option>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((generation) => (
-              <option key={generation} value={generation}>
-                Gen {generation}
-              </option>
-            ))}
-          </select>
-          <select
-            className="p-2 text-gray-800 bg-white/90 rounded-lg border-2 border-indigo-300 focus:border-yellow-400 focus:outline-none w-full sm:w-auto shadow-md"
-            value={type === null ? 'all' : type}
-            onChange={(e) => setType(e.target.value === 'all' ? null : Number(e.target.value))}
-          >
-            <option value="all">{lang ? "Tous les types" : "All Types"}</option>
-            {Array.from(types.entries()).map(([typeId, typeName]) => (
-              <option key={typeId} value={typeId}>
-                {lang ? typeName.fr : typeName.en}
-              </option>
-            ))}
-          </select>
-          <select
-            className="p-2 text-gray-800 bg-white/90 rounded-lg border-2 border-indigo-300 focus:border-yellow-400 focus:outline-none w-full sm:w-auto shadow-md"
-            value={sortOption}
-            onChange={handleSortChange}
-          >
-            <option value="id_asc">{lang ? "# croissant" : "# ascending"}</option>
-            <option value="id_desc">{lang ? "# décroissant" : "# descending"}</option>
-            <option value="name_asc">{lang ? "Nom croissant" : "Name ascending"}</option>
-            <option value="name_desc">{lang ? "Nom décroissant" : "Name descending"}</option>
-            <option value="weight_asc">{lang ? "Poids croissant" : "Weight ascending"}</option>
-            <option value="weight_desc">{lang ? "Poids décroissant" : "Weight descending"}</option>
-            <option value="height_asc">{lang ? "Taille croissant" : "Height ascending"}</option>
-            <option value="height_desc">{lang ? "Taille décroissant" : "Height descending"}</option>
-          </select>
-        </div>
+        )}
       </header>
 
       <div className="mt-6">
@@ -217,39 +181,13 @@ export default function Home() {
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
             {filteredPokemons.map((pokemon) => (
-              <div
+              <PokeCard
                 key={pokemon.id}
-                className="bg-gradient-to-br from-indigo-500 to-indigo-700 p-4 rounded-2xl shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer transform hover:-rotate-1 border border-indigo-400/50"
-                onClick={() => openPokemonModal(pokemon)}
-              >
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-xl font-bold bg-yellow-500 text-blue-900 px-2 py-1 rounded-lg">#{pokemon.id}</span>
-                  <span className="text-sm bg-blue-900/50 px-2 py-1 rounded-lg">Gen {pokemon.generation}</span>
-                </div>
-
-                <div className="bg-gradient-to-br from-blue-900/40 to-purple-900/40 rounded-xl mb-3 p-3 flex justify-center items-center">
-                  <img
-                    src={pokemon.image}
-                    alt={pokemon.name.fr}
-                    className="w-32 h-32 sm:w-40 sm:h-40 object-contain transform hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-
-                <h2 className="text-lg sm:text-xl font-bold mb-2 text-center text-yellow-300 truncate">
-                  {lang ? pokemon.name.fr : pokemon.name.en}
-                </h2>
-
-                <div className="flex flex-wrap justify-center gap-2">
-                  {pokemon.types.map(id => (
-                    <span
-                      key={id}
-                      className="text-xs px-2 py-1 bg-blue-900/70 rounded-full"
-                    >
-                      {types.get(id) ? (lang ? types.get(id)!.fr : types.get(id)!.en) : "?"}
-                    </span>
-                  ))}
-                </div>
-              </div>
+                pokemon={pokemon}
+                types={types}
+                lang={lang}
+                openPokemonModal={() => openPokemonModal(pokemon)}
+              />
             ))}
           </div>
         )}
