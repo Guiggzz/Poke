@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Poke
 
-## Getting Started
+Un projet basé sur l'univers Pokémon qui vous permet d'explorer et d'interagir avec le monde des Pokémon.
 
-First, run the development server:
+## Description
+
+Ce projet est une application qui exploite l'API fournie par un professeur pour offrir une expérience interactive avec l'univers Pokémon. Les utilisateurs peuvent:
+- Explorer la liste des Pokémon disponibles dans l'API
+- Consulter les détails de chaque Pokémon (statistiques, types, évolutions)
+- Rechercher des Pokémon par nom ou caractéristiques
+- Interagir avec les fonctionnalités définies par l'API du professeur
+
+## Installation
 
 ```bash
+# Cloner le dépôt
+git clone https://github.com/Guiggzz/Poke.git
+
+# Accéder au répertoire du projet
+cd Poke
+
+# Installer les dépendances
+npm install
+# ou
+yarn install
+
+# Lancer l'application en mode développement
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# ou
+yarn run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies utilisées
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [React.js](https://reactjs.org/) - Bibliothèque JavaScript pour construire l'interface utilisateur
+- API du professeur - API qui fournit les données Pokémon pour ce projet
+- [CSS/SCSS](https://sass-lang.com/) - Pour le style et la mise en page
+- [Axios](https://axios-http.com/) - Client HTTP pour les requêtes API
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Fonctionnalités
 
-## Learn More
+### Catalogue de Pokémon
+- Affichage paginé de tous les Pokémon existants
+- Filtrage par type, génération, etc.
+- Recherche rapide par nom
 
-To learn more about Next.js, take a look at the following resources:
+### Fiche détaillée
+- Statistiques complètes
+- Chaîne d'évolution
+- Attaques disponibles
+- Lieux où les trouver
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Système d'équipe
+- Constitution d'équipes personnalisées
+- Analyse des forces et faiblesses
+- Sauvegarde des équipes favorites
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Captures d'écran
 
-## Deploy on Vercel
+*Ajoutez ici des captures d'écran de votre application*
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Structure du projet
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+Poke/
+├── public/
+│   ├── index.html
+│   └── ...
+├── src/
+│   ├── components/
+│   │   ├── PokemonList/
+│   │   ├── PokemonDetail/
+│   │   ├── SearchBar/
+│   │   └── ...
+│   ├── services/
+│   │   └── api.js
+│   ├── styles/
+│   │   └── ...
+│   ├── App.js
+│   └── index.js
+└── package.json
+```
+
+## API Utilisée
+
+Ce projet utilise l'API fournie par le professeur pour accéder aux données Pokémon.
+
+Exemples potentiels d'endpoints (à adapter selon l'API réelle):
+- `GET /api/pokemon` : Liste des Pokémon
+- `GET /api/pokemon/{id}` : Détails d'un Pokémon spécifique
+- `GET /api/types` : Informations sur les types de Pokémon
+
+## Contribution
+
+Les contributions sont les bienvenues! Pour contribuer:
+
+1. Forkez le projet
+2. Créez votre branche de fonctionnalité (`git checkout -b feature/amazing-feature`)
+3. Committez vos changements (`git commit -m 'Add some amazing feature'`)
+4. Poussez vers la branche (`git push origin feature/amazing-feature`)
+5. Ouvrez une Pull Request
+
+## Licence
+
+Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## Remerciements
+
+- Le professeur pour la mise à disposition de l'API Pokémon utilisée dans ce projet
+- La communauté Pokémon pour son soutien constant
+- Nintendo et The Pokémon Company pour cet univers incroyable
+
+---
+
+Projet créé par [Guiggzz](https://github.com/Guiggzz)
