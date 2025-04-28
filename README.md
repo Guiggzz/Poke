@@ -107,8 +107,6 @@ Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus de
 ## Remerciements
 
 - Le professeur pour la mise à disposition de l'API Pokémon utilisée dans ce projet
-- La communauté Pokémon pour son soutien constant
-- Nintendo et The Pokémon Company pour cet univers incroyable
 
 ---
 
